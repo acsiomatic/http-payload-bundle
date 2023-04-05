@@ -1,0 +1,8 @@
+acsiomatic_http_payload:
+    response_body:
+        default: ~
+        json_or_xml:
+            formats: ['json', 'xml']
+        without_height:
+            serialization_context:
+                ignored_attributes: ['height']

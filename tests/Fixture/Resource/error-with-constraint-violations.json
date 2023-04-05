@@ -1,0 +1,7 @@
+{
+    "error": "This contains constraint violations.",
+    "constraint_violations": {
+        "foo": "foo is invalid",
+        "bar": "bar is also invalid"
+    }
+}

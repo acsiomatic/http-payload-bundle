@@ -1,0 +1,10 @@
+acsiomatic_http_payload:
+    request_body:
+        default: ~
+        json_or_xml:
+            formats: ['json', 'xml']
+        with_strict_validation:
+            validation_groups: ['strict']
+        without_height:
+            deserialization_context:
+                ignored_attributes: ['height']

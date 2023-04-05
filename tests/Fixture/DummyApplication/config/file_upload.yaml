@@ -1,0 +1,6 @@
+acsiomatic_http_payload:
+    file_upload:
+        preset_max_size_50_bytes:
+            constraints:
+                Symfony\Component\Validator\Constraints\File:
+                    maxSize: 50
