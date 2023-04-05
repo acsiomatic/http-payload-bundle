@@ -3,6 +3,7 @@
     "license": "MIT",
     "type": "library",
     "require": {
+        "php": "^8.2",
         "symfony/framework-bundle": "^6.2",
         "symfony/mime": "^6.2",
         "symfony/serializer-pack": "^1.2",
