@@ -13,19 +13,19 @@ The `acsiomatic/http-payload-bundle` handles [HTTP payload][http-payload] within
 
 ## Features In Short
 
-[AsRequestBody] is a controller argument [attribute][php-attributes] witch:
+[AsRequestBody] is a controller argument [attribute][php-attributes] which:
 
 1. transforms incoming [HTTP Request Body][http-body] into an [Object][php-objects]
 2. validates the object using [Symfony Validation][sf-validation]
 3. injects the object into the [Route][sf-routing] argument
 
-[AsUploadedFile] is a controller argument [attribute][php-attributes] witch:
+[AsUploadedFile] is a controller argument [attribute][php-attributes] which:
 
 1. extracts an [UploadedFile][sf-uploaded-file] object from incoming [HTTP Request][http-request]
 2. validates the object using [File Constraints][sf-file-constraints]
 3. injects the object into the [Route][sf-routing] argument
 
-[ResponseBody] is a route [attribute][php-attributes] witch:
+[ResponseBody] is a route [attribute][php-attributes] which:
 
 1. looks for a suitable response format through [Content Negotiation][http-content-negotiation]
 2. [serializes][sf-serializer] the data returned by the dispatched route
@@ -129,7 +129,7 @@ final class UserController
     #[Route('/user/picture', methods: ['PUT'])]
     public function picture(
         #[AsUploadedFile(
-            constraints: new File(mimeTypes: ['image/png', 'image/jpeg'])
+            constraints: new File(mimeTypes: ['image/png', 'image/jpeg']),
         )] UploadedFile $picture,
     ): Response {
         return new Response('Your picture was updated');
