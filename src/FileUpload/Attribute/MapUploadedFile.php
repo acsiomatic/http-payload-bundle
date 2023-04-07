@@ -5,7 +5,7 @@ namespace Acsiomatic\HttpPayloadBundle\FileUpload\Attribute;
 use Symfony\Component\Validator\Constraint;
 
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
-final readonly class AsUploadedFile
+final readonly class MapUploadedFile
 {
     public function __construct(
         public string|null $preset = null,

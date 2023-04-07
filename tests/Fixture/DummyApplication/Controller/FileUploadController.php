@@ -2,7 +2,7 @@
 
 namespace Acsiomatic\HttpPayloadBundle\Tests\Fixture\DummyApplication\Controller;
 
-use Acsiomatic\HttpPayloadBundle\FileUpload\Attribute\AsUploadedFile;
+use Acsiomatic\HttpPayloadBundle\FileUpload\Attribute\MapUploadedFile;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -15,14 +15,14 @@ final class FileUploadController
     #[Route('/file-upload/defaults', methods: 'POST')]
     #[Route('/file-upload/not-nullable', methods: 'POST')]
     public function defaults(
-        #[AsUploadedFile] UploadedFile $file,
+        #[MapUploadedFile] UploadedFile $file,
     ): Response {
         return new Response($file->getContent());
     }
 
     #[Route('/file-upload/nullable', methods: 'POST')]
     public function nullable(
-        #[AsUploadedFile] UploadedFile|null $file,
+        #[MapUploadedFile] UploadedFile|null $file,
     ): Response {
         return new Response($file?->getContent());
     }
@@ -36,21 +36,21 @@ final class FileUploadController
 
     #[Route('/file-upload/custom-name-foo', methods: 'POST')]
     public function customNameAnd50bMaxSize(
-        #[AsUploadedFile(name: 'foo')] UploadedFile $bar,
+        #[MapUploadedFile(name: 'foo')] UploadedFile $bar,
     ): Response {
         return new Response($bar->getContent());
     }
 
     #[Route('/file-upload/max-size-50-bytes-local', methods: 'POST')]
     public function customMaxSize(
-        #[AsUploadedFile(constraints: new File(maxSize: '50'))] UploadedFile $file,
+        #[MapUploadedFile(constraints: new File(maxSize: '50'))] UploadedFile $file,
     ): Response {
         return new Response($file->getContent());
     }
 
     #[Route('/file-upload/max-size-50-bytes-preset', methods: 'POST')]
     public function preset(
-        #[AsUploadedFile(preset: 'preset_max_size_50_bytes')] UploadedFile $file,
+        #[MapUploadedFile(preset: 'preset_max_size_50_bytes')] UploadedFile $file,
     ): Response {
         return new Response($file->getContent());
     }
