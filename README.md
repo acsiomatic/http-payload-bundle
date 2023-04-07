@@ -13,13 +13,13 @@ The `acsiomatic/http-payload-bundle` handles [HTTP payload][http-payload] within
 
 ## Features In Short
 
-[AsRequestBody] is a controller argument [attribute][php-attributes] which:
+[MapRequestBody] is a controller argument [attribute][php-attributes] which:
 
 1. transforms incoming [HTTP Request Body][http-body] into an [Object][php-objects]
 2. validates the object using [Symfony Validation][sf-validation]
 3. injects the object into the [Route][sf-routing] argument
 
-[AsUploadedFile] is a controller argument [attribute][php-attributes] which:
+[MapUploadedFile] is a controller argument [attribute][php-attributes] which:
 
 1. extracts an [UploadedFile][sf-uploaded-file] object from incoming [HTTP Request][http-request]
 2. validates the object using [File Constraints][sf-file-constraints]
@@ -62,7 +62,7 @@ acsiomatic_http_payload:
 
 ### Receiving Objects
 
-The [AsRequestBody] attribute injects the [HTTP Request Body][http-body] into a [Route][sf-routing] argument.
+The [MapRequestBody] attribute injects the [HTTP Request Body][http-body] into a [Route][sf-routing] argument.
 Incoming data is [deserialized][sf-serializer-deserializing] and [validated][sf-validation] before being injected.
 
 ```php
@@ -70,7 +70,7 @@ Incoming data is [deserialized][sf-serializer-deserializing] and [validated][sf-
 
 namespace App\Controller;
 
-use Acsiomatic\HttpPayloadBundle\RequestBody\Attribute\AsRequestBody;
+use Acsiomatic\HttpPayloadBundle\RequestBody\Attribute\MapRequestBody;
 use App\NumberRange;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -81,7 +81,7 @@ final class LuckyController
 {
     #[Route('/lucky/number', methods: ['GET'])]
     public function number(
-        #[AsRequestBody] NumberRange $range,
+        #[MapRequestBody] NumberRange $range,
     ): Response {
         return new Response(
             (string) random_int($range->min, $range->max)
@@ -109,14 +109,14 @@ final class NumberRange
 
 ### Receiving Files
 
-The [AsUploadedFile] attribute fetches the file from the [Request][sf-request] and applies [custom constraints][sf-file-constraints] before injecting it into the [Route][sf-routing] argument.
+The [MapUploadedFile] attribute fetches the file from the [Request][sf-request] and applies [custom constraints][sf-file-constraints] before injecting it into the [Route][sf-routing] argument.
 
 ```php
 # src/Controller/UserController.php
 
 namespace App\Controller;
 
-use Acsiomatic\HttpPayloadBundle\FileUpload\Attribute\AsUploadedFile;
+use Acsiomatic\HttpPayloadBundle\FileUpload\Attribute\MapUploadedFile;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -128,7 +128,7 @@ final class UserController
 {
     #[Route('/user/picture', methods: ['PUT'])]
     public function picture(
-        #[AsUploadedFile(
+        #[MapUploadedFile(
             constraints: new File(mimeTypes: ['image/png', 'image/jpeg']),
         )] UploadedFile $picture,
     ): Response {
@@ -188,8 +188,8 @@ final class Person
 
 See [Streaming File Responses][sf-streaming].
 
-[AsRequestBody]: src/RequestBody/Attribute/AsRequestBody.php
-[AsUploadedFile]: src/FileUpload/Attribute/AsUploadedFile.php
+[MapRequestBody]: src/RequestBody/Attribute/MapRequestBody.php
+[MapUploadedFile]: src/FileUpload/Attribute/MapUploadedFile.php
 [ResponseBody]: src/ResponseBody/Attribute/ResponseBody.php
 [Symfony]: https://symfony.com
 [api-endpoint]: https://www.cloudflare.com/en-gb/learning/security/api/what-is-api-endpoint

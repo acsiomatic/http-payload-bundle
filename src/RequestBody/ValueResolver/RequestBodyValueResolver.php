@@ -2,7 +2,7 @@
 
 namespace Acsiomatic\HttpPayloadBundle\RequestBody\ValueResolver;
 
-use Acsiomatic\HttpPayloadBundle\RequestBody\Attribute\AsRequestBody;
+use Acsiomatic\HttpPayloadBundle\RequestBody\Attribute\MapRequestBody;
 use Acsiomatic\HttpPayloadBundle\RequestBody\Exception\ContentTypeMismatchException;
 use Acsiomatic\HttpPayloadBundle\RequestBody\Exception\InvalidRequestBodyException;
 use Acsiomatic\HttpPayloadBundle\RequestBody\Exception\MissingArgumentTypeException;
@@ -36,8 +36,8 @@ final readonly class RequestBodyValueResolver implements ValueResolverInterface
      */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
-        $attribute = $argument->getAttributesOfType(AsRequestBody::class, ArgumentMetadata::IS_INSTANCEOF)[0] ?? null;
-        if (!$attribute instanceof AsRequestBody) {
+        $attribute = $argument->getAttributesOfType(MapRequestBody::class, ArgumentMetadata::IS_INSTANCEOF)[0] ?? null;
+        if (!$attribute instanceof MapRequestBody) {
             return [];
         }
 

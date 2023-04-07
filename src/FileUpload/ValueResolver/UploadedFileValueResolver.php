@@ -2,7 +2,7 @@
 
 namespace Acsiomatic\HttpPayloadBundle\FileUpload\ValueResolver;
 
-use Acsiomatic\HttpPayloadBundle\FileUpload\Attribute\AsUploadedFile;
+use Acsiomatic\HttpPayloadBundle\FileUpload\Attribute\MapUploadedFile;
 use Acsiomatic\HttpPayloadBundle\FileUpload\Exception\InvalidUploadedFileException;
 use Acsiomatic\HttpPayloadBundle\FileUpload\Exception\MissingUploadedFileException;
 use Acsiomatic\HttpPayloadBundle\FileUpload\Outline;
@@ -34,8 +34,8 @@ final readonly class UploadedFileValueResolver implements ValueResolverInterface
             return [];
         }
 
-        $attribute = $argument->getAttributesOfType(AsUploadedFile::class, ArgumentMetadata::IS_INSTANCEOF)[0] ?? null;
-        if (!$attribute instanceof AsUploadedFile) {
+        $attribute = $argument->getAttributesOfType(MapUploadedFile::class, ArgumentMetadata::IS_INSTANCEOF)[0] ?? null;
+        if (!$attribute instanceof MapUploadedFile) {
             return [];
         }
 

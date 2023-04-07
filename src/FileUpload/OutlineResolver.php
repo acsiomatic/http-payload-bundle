@@ -2,7 +2,7 @@
 
 namespace Acsiomatic\HttpPayloadBundle\FileUpload;
 
-use Acsiomatic\HttpPayloadBundle\FileUpload\Attribute\AsUploadedFile;
+use Acsiomatic\HttpPayloadBundle\FileUpload\Attribute\MapUploadedFile;
 use Acsiomatic\HttpPayloadBundle\FileUpload\Exception\PresetNotFoundException;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Symfony\Component\Validator\Constraint;
@@ -20,7 +20,7 @@ final readonly class OutlineResolver
     ) {
     }
 
-    public function resolve(AsUploadedFile $attribute): Outline
+    public function resolve(MapUploadedFile $attribute): Outline
     {
         $preset = $this->getPreset($attribute->preset ?? self::PRESET_DEFAULT);
 

@@ -5,7 +5,7 @@ namespace Acsiomatic\HttpPayloadBundle\RequestBody\Attribute;
 use Symfony\Component\Validator\Constraints\GroupSequence;
 
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
-final readonly class AsRequestBody
+final readonly class MapRequestBody
 {
     /** @var array<string>|null */
     public array|null $formats;

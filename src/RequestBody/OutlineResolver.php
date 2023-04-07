@@ -2,7 +2,7 @@
 
 namespace Acsiomatic\HttpPayloadBundle\RequestBody;
 
-use Acsiomatic\HttpPayloadBundle\RequestBody\Attribute\AsRequestBody;
+use Acsiomatic\HttpPayloadBundle\RequestBody\Attribute\MapRequestBody;
 use Acsiomatic\HttpPayloadBundle\RequestBody\Exception\ContentTypeMismatchException;
 use Acsiomatic\HttpPayloadBundle\RequestBody\Exception\PresetNotFoundException;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
@@ -23,7 +23,7 @@ final readonly class OutlineResolver
     ) {
     }
 
-    public function resolve(Request $request, AsRequestBody $attribute): Outline
+    public function resolve(Request $request, MapRequestBody $attribute): Outline
     {
         $preset = $this->getPreset($attribute->preset ?? self::PRESET_DEFAULT);
 
